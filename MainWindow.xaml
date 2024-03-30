@@ -7,6 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!-- Two Rows in the Grid -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <!-- First Row: Header -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" x:Name="Header">
+            <!-- Banner -->
+            <TextBlock Text="Conference Application" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10"/>
+            <!-- Login Button -->
+            <Button x:Name="loginButton" Content="Login" Width="70" Height="30" Margin="600,10,10,10" Click="Login_Click"/>
+        </StackPanel>
+
+        <!-- Second Row: Main Content -->
+        <Frame Content="Main" Grid.Row="1" Name="mainFrame" Margin="0,2,0,-2" Navigated="main_Navigated"/>
     </Grid>
 </Window>

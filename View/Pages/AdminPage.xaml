@@ -7,7 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminPage">
-
+    <Page.Background>
+        <!-- Create a LinearGradientBrush with your colors -->
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#49c5b6" Offset="0"/>
+            <GradientStop Color="#2779a7" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <Grid HorizontalAlignment="Center">
 
@@ -115,7 +121,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="UpdateUserButton_Copy1" Content="Back" Margin="561,0,-134,82" Click="BackButton_Click" HorizontalAlignment="Right" Width="40"/>
+            <Button x:Name="UpdateUserButton_Copy1" Content="Back" Margin="561,0,-134,82" Click="BackButton_Click" HorizontalAlignment="Center" Width="40"/>
         </Grid>
     </ScrollViewer>
 </Page>
