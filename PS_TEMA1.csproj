@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\Repository\" />
     <Folder Include="Presenter\" />
     <Folder Include="View\Interface\" />
     <Folder Include="View\Page\" />
