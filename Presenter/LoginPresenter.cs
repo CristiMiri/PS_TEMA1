@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PS_TEMA1.View.Pages;
 
 namespace PS_TEMA1.Presenter
 {
@@ -26,11 +27,11 @@ namespace PS_TEMA1.Presenter
             var utilizator = _utilizatorRepository.GetUtilizatorbyEmailandParola(_loginGui.getEmail(), _loginGui.getPassword());
             if (utilizator != null)
             {
-                _loginGui.showShowMessage("Login successful", "Welcome " + utilizator.Nume + " ");
+                _loginGui.showMessage("Login successful", "Welcome " + utilizator.Nume + " ");
             }
             else
             {
-                _loginGui.showShowMessage("Login failed", "Invalid username or password");
+                _loginGui.showMessage("Login failed", "Invalid username or password");
             }
         }
 
@@ -38,11 +39,11 @@ namespace PS_TEMA1.Presenter
         {
             if (_loginGui.getEmail().Length < 3 && !_loginGui.getEmail().Contains("@") && _loginGui.getEmail().Length >30)
             {
-                _loginGui.showShowMessage("Invalid email", "Invalid email");
+                _loginGui.showMessage("Invalid email", "Invalid email");
             }
             else if (_loginGui.getPassword().Length < 3)
             {
-                _loginGui.showShowMessage("Password too short", "Password too short");
+                _loginGui.showMessage("Password too short", "Password too short");
             }
             else
             {
@@ -76,12 +77,12 @@ namespace PS_TEMA1.Presenter
             string password = this._loginPage.getPassword();
             if (email.Length < 3 && !email.Contains("@") && email.Length > 30)
             {
-                this._loginPage.showShowMessage("Invalid email", "Invalid email");
+                this._loginPage.showMessage("Invalid email", "Invalid email");
                 return null;
             }
             else if (password.Length < 3)
             {
-                this._loginPage.showShowMessage("Password too short", "Password too short");
+                this._loginPage.showMessage("Password too short", "Password too short");
                 return null;
             }
             return new Utilizator(email, password);
@@ -112,7 +113,7 @@ namespace PS_TEMA1.Presenter
             }
             else
             {
-                this._loginPage.showShowMessage("Login failed", "Invalid username or password");
+                this._loginPage.showMessage("Login failed", "Invalid username or password");
             }
         }
 

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS_TEMA1.View.Interface
+namespace PS_TEMA1.View.Interfaces
 {
-    internal interface IGUI
+    internal interface IUtilizatorGui
     {
-        void ShowMessage(string title, string message);
     }
 }

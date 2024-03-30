@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PS_TEMA1.View.Interfaces;
+using System.Windows.Controls;
 
 namespace PS_TEMA1.Presenter
 {
@@ -18,7 +20,7 @@ namespace PS_TEMA1.Presenter
             _adminGui = adminGui;
             utilizatorRepository = new UtilizatorRepository();
             List<Utilizator> utilizators = utilizatorRepository.GetUtilizatori();
-            DataGrid dataGrid = _adminGui.GetDataGrid();
+            DataGrid dataGrid = _adminGui.getDataGrid();
             dataGrid.ItemsSource = utilizators;
         }
 
@@ -32,34 +34,34 @@ namespace PS_TEMA1.Presenter
 
                     if (utilizatorRepository.addUtilizator(utilizator) == true)
                     {
-                        _adminGui.showShowMessage("Succes", "Utilizatorul a fost adaugat cu succes!");
+                        _adminGui.showMessage("Succes", "Utilizatorul a fost adaugat cu succes!");
                         List<Utilizator> utilizators = utilizatorRepository.GetUtilizatori();
-                        _adminGui.SetDataGridItemsSource(utilizators);
+                        _adminGui.setDataGridItemsSource(utilizators);
                     }
                     else
                     {
-                        _adminGui.showShowMessage("Error", "Utilizatorul exista deja in baza de date!");
+                        _adminGui.showMessage("Error", "Utilizatorul exista deja in baza de date!");
                     }
                 }
             }
             catch (Exception e)
             {
-                _adminGui.showShowMessage("Error", "Nu s-a putut adauga utilizatorul!");
+                _adminGui.showMessage("Error", "Nu s-a putut adauga utilizatorul!");
             }
         }
 
         public void DeleteUser()
         {
 
-            if (_adminGui.GetDataGrid().SelectedItem != null)
+            if (_adminGui.getDataGrid().SelectedItem != null)
             {
-                Utilizator selectedUtilizator = _adminGui.GetDataGrid().SelectedItem as Utilizator;
+                Utilizator selectedUtilizator = _adminGui.getDataGrid().SelectedItem as Utilizator;
                 if (selectedUtilizator != null)
                 {
                     utilizatorRepository.deleteUtilizator(selectedUtilizator.Id);
                     utilizatorRepository.GetUtilizatori();
-                    _adminGui.SetDataGridItemsSource(utilizatorRepository.GetUtilizatori());
-                    _adminGui.showShowMessage(_adminGui.getUtilizatorNume(), "Utilizatorul a fost sters cu succes!");
+                    _adminGui.setDataGridItemsSource(utilizatorRepository.GetUtilizatori());
+                    _adminGui.showMessage(_adminGui.getUtilizatorNume(), "Utilizatorul a fost sters cu succes!");
                 }
             }
         }
@@ -74,32 +76,32 @@ namespace PS_TEMA1.Presenter
             int id = _adminGui.getUtilizatorId();
             if (id < 0)
             {
-                _adminGui.showShowMessage("Error", "Id-ul nu poate fi negativ!");
+                _adminGui.showMessage("Error", "Id-ul nu poate fi negativ!");
                 return null;
             }
             if (String.IsNullOrEmpty(name))
             {
-                _adminGui.showShowMessage("Error", "Numele este obligatoriu!");
+                _adminGui.showMessage("Error", "Numele este obligatoriu!");
                 return null;
             }
             if (String.IsNullOrEmpty(email))
             {
-                _adminGui.showShowMessage("Error", "Email-ul este obligatoriu!");
+                _adminGui.showMessage("Error", "Email-ul este obligatoriu!");
                 return null;
             }
             if (String.IsNullOrEmpty(parola))
             {
-                _adminGui.showShowMessage("Error", "Parola este obligatorie!");
+                _adminGui.showMessage("Error", "Parola este obligatorie!");
                 return null;
             }
             if (String.IsNullOrEmpty(telefon))
             {
-                _adminGui.showShowMessage("Error", "Telefonul este obligatoriu!");
+                _adminGui.showMessage("Error", "Telefonul este obligatoriu!");
                 return null;
             }
             if (user_Type == null)
             {
-                _adminGui.showShowMessage("Error", "Tipul utilizatorului este obligatoriu!");
+                _adminGui.showMessage("Error", "Tipul utilizatorului este obligatoriu!");
                 return null;
             }
             return new Utilizator(id, name, email, parola, user_Type, telefon);
@@ -114,22 +116,22 @@ namespace PS_TEMA1.Presenter
             {
                 if (utilizatorRepository.updateUtilizator(utilizator) == true)
                 {
-                    _adminGui.showShowMessage("Succes", "Utilizatorul a fost actualizat cu succes!");
+                    _adminGui.showMessage("Succes", "Utilizatorul a fost actualizat cu succes!");
                     List<Utilizator> utilizators = utilizatorRepository.GetUtilizatori();
-                    _adminGui.SetDataGridItemsSource(utilizators);
+                    _adminGui.setDataGridItemsSource(utilizators);
                 }
                 else
                 {
-                    _adminGui.showShowMessage("Error", "Nu s-a putut actualiza utilizatorul!");
+                    _adminGui.showMessage("Error", "Nu s-a putut actualiza utilizatorul!");
                 }
             }
         }
 
         internal void SetFormFields()
         {
-            if (_adminGui.GetDataGrid().SelectedItem != null)
+            if (_adminGui.getDataGrid().SelectedItem != null)
             {
-                Utilizator selectedUtilizator = _adminGui.GetDataGrid().SelectedItem as Utilizator;
+                Utilizator selectedUtilizator = _adminGui.getDataGrid().SelectedItem as Utilizator;
                 _adminGui.setUtilizatorId(selectedUtilizator.Id);
                 _adminGui.setUtilizatorEmail(selectedUtilizator.Email);
                 _adminGui.setUtilizatorNume(selectedUtilizator.Nume);
@@ -155,13 +157,13 @@ if (utilizator != null)
 bool result = utilizatorRepository.addUtilizator(utilizator);
 if (result)
 {
-  this._adminGui.showShowMessage("Succes", "Utilizatorul a fost adaugat cu succes!");
+  this._adminGui.showMessage("Succes", "Utilizatorul a fost adaugat cu succes!");
   this._adminGui.UtilizatorList(utilizatorRepository.GetUtilizatori());
 
 }
 else
 { 
-  this._adminGui.showShowMessage("Error", "Nu s-a putut adauga utilizatorul!");
+  this._adminGui.showMessage("Error", "Nu s-a putut adauga utilizatorul!");
 }
 }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace PS_TEMA1.View.Interface
+namespace PS_TEMA1.View.Interfaces
 {
     internal interface IOrganizatorGui : IGUI
     {

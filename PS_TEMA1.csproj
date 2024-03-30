@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="View\Page\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
     <PackageReference Include="Npgsql" Version="8.0.2" />
   </ItemGroup>

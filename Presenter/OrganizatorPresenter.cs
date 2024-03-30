@@ -1,4 +1,6 @@
 ﻿using PS_TEMA1.Model.Repository;
+using PS_TEMA1.View.Interfaces;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
