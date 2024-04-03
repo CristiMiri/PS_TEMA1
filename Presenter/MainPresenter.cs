@@ -51,14 +51,18 @@ namespace PS_TEMA1.Presenter
 
         public void ShowHomePage()
         {
+            Action<string> ChangePage = this.ChangePage;
             HomePage homePage = new HomePage();
+            homePage.SetCallback(ChangePage);
             this._mainGui.SetFrameContent(homePage);
             this._mainGui.ShowHeader();
         }
 
         public void ShowAdminPage()
         {
-            AdminPage adminPage = new AdminPage(ChangePage);
+            Action<string> ChangePage = this.ChangePage;            
+            AdminPage adminPage = new AdminPage();
+            adminPage.SetCallback(ChangePage);
             this._mainGui.SetFrameContent(adminPage);
             this._mainGui.HideHeader();
         }
@@ -66,15 +70,19 @@ namespace PS_TEMA1.Presenter
         public void ShowOrganizatorPage()
         {
             OrganizatorPage homePage = new OrganizatorPage();
+            Action<string> ChangePage = this.ChangePage;
+            homePage.SetCallback(ChangePage);
             this._mainGui.SetFrameContent(homePage);
-            this._mainGui.ShowHeader();
+            this._mainGui.HideHeader();
         }
 
         public void ShowParticipantPage()
         {
             UtilizatorPage homePage = new UtilizatorPage();
+            Action<string> ChangePage = this.ChangePage;
+            homePage.SetCallback(ChangePage);
             this._mainGui.SetFrameContent(homePage);
-            this._mainGui.ShowHeader();
+            this._mainGui.HideHeader();
         }
     }
 }

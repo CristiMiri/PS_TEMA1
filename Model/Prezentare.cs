@@ -12,10 +12,11 @@ namespace PS_TEMA1.Model
         TEHNOLOGIE,
         MEDICINA,
         ARTA,
-        SPORT
+        SPORT,
+        TOATE, 
     }
 
-    internal class Prezentare
+    public class Prezentare
     {
         private int id;
         private String titlu;

@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS_TEMA1.Model.Repository
+namespace TEMA1_PS.Model.Repositories
 {
-    internal class Repository
+    public class Repository
     {
         private NpgsqlConnection conection;
         public Repository()
@@ -42,27 +43,24 @@ namespace PS_TEMA1.Model.Repository
         //and return status of the operation
         public bool ExecuteNonQuery(string query)
         {
-            bool success = false;
             try
             {
                 OpenConnection();
                 NpgsqlCommand cmd = new NpgsqlCommand(query, conection);
-                if (cmd.ExecuteNonQuery() == 1)
-                {
-                    success = true;
-                }
+                cmd.ExecuteNonQuery(); 
+                return true; // Success if no exception
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                return false; // Return false if an exception is thrown
             }
             finally
             {
-                CloseConnection();
+                CloseConnection(); // Ensure connection is always closed
             }
-            return success;
-
         }
+
 
         //Execute query to get data from database
         public DataTable ExecuteQuery(string query)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PS_TEMA1.Model
 {
-    internal class Conferinta
+    public class Conferinta
     {
         private int id;
         private String titlu;

@@ -26,23 +26,17 @@ namespace PS_TEMA1.View.Pages
         private AdminPresenter _adminPresenter;
         private Action<string> _callback;
 
-        public AdminPage(Action<string> callback)
+        public AdminPage()
         {
             InitializeComponent();
-            _adminPresenter = new AdminPresenter(this);
-            _callback = callback;
+            _adminPresenter = new AdminPresenter(this);            
             UserTypeComboBoxItems();
         }
 
         public void HideForm()
         {
             throw new NotImplementedException();
-        }
-
-        public void showMessage(string title, string message)
-        {
-            MessageBox.Show(message, title);
-        }
+        }        
 
         public DataGrid getDataGrid()
         {
@@ -145,11 +139,17 @@ namespace PS_TEMA1.View.Pages
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
             _adminPresenter.SetFormFields();
+            Administrare.IsExpanded = true;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             _callback?.Invoke("home");
+        }
+
+        internal void SetCallback(Action<string> changePage)
+        {
+            _callback = changePage;
         }
     }
 }

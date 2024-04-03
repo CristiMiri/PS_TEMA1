@@ -1,4 +1,4 @@
-﻿using PS_TEMA1.Model.Repository;
+﻿using PS_TEMA1.Model.Repositories;
 using PS_TEMA1.Model;
 using System;
 using System.Collections.Generic;
@@ -11,57 +11,7 @@ namespace PS_TEMA1.Presenter
 {
     internal class LoginPresenter
     {
-        /*
-        private ILoginGui _loginGui;
-        private UtilizatorRepository _utilizatorRepository;
-
-        public LoginPresenter(ILoginGui loginGui)
-        {
-            _loginGui = loginGui;
-            _utilizatorRepository = new UtilizatorRepository();
-            this.main = main;
-        }
-
-        public void Login()
-        {
-            var utilizator = _utilizatorRepository.GetUtilizatorbyEmailandParola(_loginGui.getEmail(), _loginGui.getPassword());
-            if (utilizator != null)
-            {
-                _loginGui.showMessage("Login successful", "Welcome " + utilizator.Nume + " ");
-            }
-            else
-            {
-                _loginGui.showMessage("Login failed", "Invalid username or password");
-            }
-        }
-
-        public void validData()
-        {
-            if (_loginGui.getEmail().Length < 3 && !_loginGui.getEmail().Contains("@") && _loginGui.getEmail().Length >30)
-            {
-                _loginGui.showMessage("Invalid email", "Invalid email");
-            }
-            else if (_loginGui.getPassword().Length < 3)
-            {
-                _loginGui.showMessage("Password too short", "Password too short");
-            }
-            else
-            {
-                Login();
-            }
-        }
-
-        public void goBack()
-        {
-            this.main.Content = null;
-            this.main.Content = new HomePage(); 
-        }
-
-        internal void removeForm()
-        {
-            this.main.Content = null;            
-        }
-        */
+        
         private LoginPage _loginPage;
         private UtilizatorRepository _utilizatorRepository = new UtilizatorRepository();
         private String loginType;

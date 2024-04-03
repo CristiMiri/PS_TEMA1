@@ -23,12 +23,19 @@ namespace PS_TEMA1
         public MainWindow()
         {
             InitializeComponent();
-            //mainFrame.Content = new HomePage();
+            //mainFrame.Content = new HomePage();//
             mainFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             _mainPresenter = new MainPresenter(this);
 
-            mainFrame.Content = new AdminPage(_mainPresenter.ChangePage);
-            HideHeader();
+            //mainFrame.Content = new AdminPage(_mainPresenter.ChangePage);
+            OrganizatorPage organizatorPage = new OrganizatorPage();
+            organizatorPage.Callback = _mainPresenter.ChangePage;
+            UtilizatorPage utilizatorPage = new UtilizatorPage();
+            utilizatorPage.SetCallback(_mainPresenter.ChangePage);
+            mainFrame.Content = new HomePage();
+
+
+            //HideHeader();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

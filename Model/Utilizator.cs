@@ -13,7 +13,7 @@ namespace PS_TEMA1.Model
         ADMINISTRATOR
     }
 
-    internal class Utilizator
+    public class Utilizator
     {
         private int id;
         private String nume;

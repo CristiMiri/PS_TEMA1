@@ -1,4 +1,4 @@
-﻿using PS_TEMA1.Model.Repository;
+﻿using PS_TEMA1.Model.Repositories;
 using PS_TEMA1.Model;
 using System;
 using System.Collections.Generic;
@@ -142,91 +142,6 @@ namespace PS_TEMA1.Presenter
 
             }
         }
-        /*
-private IAdminGui _adminGui;
 
-
-//Operații CRUD pentru informațiile legate de utilizatorii aplicației care necesită autentificare;
-//ToDO Implementare//
-//Modal
-public void AddUtilizator()
-{
-Utilizator utilizator = this.validUtilizatorData();
-if (utilizator != null)
-{
-bool result = utilizatorRepository.addUtilizator(utilizator);
-if (result)
-{
-  this._adminGui.showMessage("Succes", "Utilizatorul a fost adaugat cu succes!");
-  this._adminGui.UtilizatorList(utilizatorRepository.GetUtilizatori());
-
-}
-else
-{ 
-  this._adminGui.showMessage("Error", "Nu s-a putut adauga utilizatorul!");
-}
-}
-}
-
-public void DeleteUtilizator()
-{
-Utilizator utilizator = validInformation();
-if (utilizator != null)
-{
-utilizatorRepository.DeleteUtilizator(utilizator);
-_adminGui.UtilizatorList(utilizatorRepository.GetAllUtilizatori());
-resetUtilizatorControls();
-}
-}
-
-public void UpdateUtilizator()
-{
-Utilizator utilizator = validInformation();
-if (utilizator != null)
-{
-utilizatorRepository.UpdateUtilizator(utilizator);
-_adminGui.UtilizatorList(utilizatorRepository.GetAllUtilizatori());
-resetUtilizatorControls();
-}
-}
-
-public void SearchUtilizatorByIDOrName()
-{
-Utilizator utilizator = validInformation();
-if (utilizator != null)
-{
-List<Utilizator> utilizatori = utilizatorRepository.SearchUtilizatorByIDOrName(utilizator);
-_adminGui.UtilizatorList(utilizatori);
-}
-}
-//Vizualizarea listei tuturor utilizatorilor care necesită autentificare
-public void allUtilizatori()
-{
-_adminGui.UtilizatorList(utilizatorRepository.GetAllUtilizatori());
-}
-
-private Utilizator validUtilizatorData()
-{
-      if (_adminGui.UtilizatorName == "")
-{
-_adminGui.UtilizatorNameError = "Name is required!";
-}
-else
-{
-_adminGui.UtilizatorNameError = "";
-}
-
-if (_adminGui.UtilizatorPassword == "")
-{
-_adminGui.UtilizatorPasswordError = "Password is required!";
-}
-else
-{
-_adminGui.UtilizatorPasswordError = "";
-}
-}
-
-
-*/
     }
 }

@@ -14,11 +14,13 @@
         </Grid.RowDefinitions>
 
         <!-- First Row: Header -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0" x:Name="Header">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" x:Name="Header" Background="{DynamicResource AppBackgroundBrush}">
             <!-- Banner -->
-            <TextBlock Text="Conference Application" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10"/>
-            <!-- Login Button -->
-            <Button x:Name="loginButton" Content="Login" Width="70" Height="30" Margin="600,10,10,10" Click="Login_Click"/>
+            <TextBlock Text="Conference Application" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10" Style="{DynamicResource HeaderTextBlockStyle}"/>
+            <!-- Login Button --><!--c:\users\crist\documents\facultate\anul4_sem2\ps\ps_tema1\mainwindow.xaml.cs
+c:\users\crist\documents\facultate\anul4_sem2\ps\ps_tema1\mainwindow.xaml-->
+
+            <Button x:Name="loginButton" Content="Login" Margin="450,10,10,10" Click="Login_Click" HorizontalAlignment="Right" Style="{DynamicResource ButtonBaseStyle}"/>
         </StackPanel>
 
         <!-- Second Row: Main Content -->

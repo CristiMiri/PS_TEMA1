@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using TEMA1_PS.Model.Repositories;
 
-namespace PS_TEMA1.Model.Repository
+
+namespace PS_TEMA1.Model.Repositories
 {
-    internal class PrezentareRepository
+    public class PrezentareRepository
     {
         private Repository repository;
         private DataTable prezentariTable;
@@ -52,7 +55,7 @@ namespace PS_TEMA1.Model.Repository
             prezentare.Ora = row["ora"].ToString();
             //Sectiune  enum STIINTE,TEHNOLOGIE,MEDICINA,ARTA,SPORT
             prezentare.Sectiune = (Sectiune)Enum.Parse(typeof(Sectiune), row["sectiune"].ToString());
-            prezentare.Id_conferinta = Convert.ToInt32(row["id_conferinta"]);
+            prezentare.Id_conferinta = Convert.ToInt32(row["id_conferinta"]);           
             return prezentare;
         }
 
@@ -65,7 +68,7 @@ namespace PS_TEMA1.Model.Repository
         //CRUD
         public bool AddPrezentare(Prezentare prezentare)
         {
-            string query = "INSERT INTO prezentari (titlu, autor, descriere, data, ora, sectiune) VALUES ('" +
+            string query = "INSERT INTO prezentari (titlu, autor, descriere, data, ora, sectiune,id_conferinta) VALUES ('" +
                     prezentare.Titlu + "', '" +
                     prezentare.Autor + "', '" +
                     prezentare.Descriere + "', '" +
@@ -107,8 +110,8 @@ namespace PS_TEMA1.Model.Repository
                 "autor = '" + prezentare.Autor + "', " +
                 "descriere = '" + prezentare.Descriere + "', " +
                 "data = '" + prezentare.Data + "', " +
-                "ora = '" + prezentare.Ora + "' " +
-                "sectiune = '" + prezentare.Sectiune + "'" +
+                "ora = '" + prezentare.Ora + "'," +
+                "sectiune = '" + prezentare.Sectiune + "'," +
                 "id_conferinta = '" + prezentare.Id_conferinta + "'" +
                 "WHERE id = " + prezentare.Id;
             return repository.ExecuteNonQuery(query);
@@ -148,6 +151,19 @@ namespace PS_TEMA1.Model.Repository
                 }
             }
             return prezentari;
+        }
+
+        public Prezentare GetPrezentarebyTitlu(string titlu)
+        {
+            PrezentareTable();
+            foreach (DataRow row in prezentariTable.Rows)
+            {
+                if (row["titlu"].ToString().Equals(titlu))
+                {
+                    return rowToPrezentare(row);
+                }
+            }
+            return null;
         }
     }
 }

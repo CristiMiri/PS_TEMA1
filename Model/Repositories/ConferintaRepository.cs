@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Npgsql;
+using PS_TEMA1.Model;
+using System;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TEMA1_PS.Model.Repositories;
 
-namespace PS_TEMA1.Model.Repository
+namespace TEMA1_PS.Model.Repositories
 {
-    internal class ConferintaRepository
+    public class ConferintaRepository
     {
         private Repository repository;
         /*Conferinta =  private int id;
@@ -36,25 +35,23 @@ namespace PS_TEMA1.Model.Repository
 
         public Conferinta rowToConferinta(DataRow row)
         {
-
-            Conferinta conferinta = new Conferinta
-            {
-                Id = int.Parse(row["id"].ToString()),
-                Titlu = row["titlu"].ToString(),
-                Locatie = row["locatie"].ToString(),
-                Data = row["data"].ToString()
-            };
+            
+            Conferinta conferinta = new Conferinta();
+            conferinta.Id = Convert.ToInt32(row["id"]);
+            conferinta.Titlu = row["titlu"].ToString();
+            conferinta.Locatie = row["locatie"].ToString();
+            conferinta.Data = row["data"].ToString();           
             return conferinta;
         }
 
         //CRUD
-        public void AddConferinta(Conferinta conferinta)
+        public bool AddConferinta(Conferinta conferinta)
         {
             string query = "INSERT INTO conferinte( titlu, locatie, data) VALUES ('" +
                 conferinta.Titlu + "', '" +
                 conferinta.Locatie + "', '" +
                 conferinta.Data + "')";
-            repository.ExecuteNonQuery(query);
+            return repository.ExecuteNonQuery(query);
         }
 
         public List<Conferinta> GetConferinte()
@@ -91,20 +88,20 @@ namespace PS_TEMA1.Model.Repository
             return null;
         }
 
-        public void UpdateConferinta(Conferinta conferinta)
+        public bool UpdateConferinta(Conferinta conferinta)
         {
-            string query = "UPDATE conferinte SET titlu = '" +
-                conferinta.Titlu + "', locatie = '" +
-                conferinta.Locatie + "', data = '" +
-                conferinta.Data + "', sectiune = '" +
-                conferinta.Id;
-            repository.ExecuteNonQuery(query);
+            string query = "UPDATE conferinte SET titlu = '" + conferinta.Titlu +
+                "', locatie = '" + conferinta.Locatie +
+                "', data = '" + conferinta.Data +                
+                "' WHERE id = " + conferinta.Id; // Assuming there's an ID field to specify which row to update
+
+            return repository.ExecuteNonQuery(query);
         }
 
-        public void DeleteConferinta(int id)
+        public bool DeleteConferinta(int id)
         {
             string query = "DELETE FROM conferinte WHERE id = " + id;
-            repository.ExecuteNonQuery(query);
+            return repository.ExecuteNonQuery(query);
         }
 
         //Filters

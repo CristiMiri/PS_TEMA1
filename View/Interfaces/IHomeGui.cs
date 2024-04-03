@@ -1,8 +1,10 @@
-﻿using System;
+﻿using PS_TEMA1.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace PS_TEMA1.View.Interfaces
 {
@@ -16,7 +18,12 @@ namespace PS_TEMA1.View.Interfaces
         void setTelefon(String telefon);
         String getPrezentareSelectata();
         void setPrezentareSelectata(String prezentare);
-
         void setPrezentariSelection(List<String> prezentari);
+
+        DataGrid getTabelConferinte();
+        Sectiune getFilterSelected();
+        void setFilterSelected(Sectiune sectiune);
+        void FilterList();
+        
     }
 }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:PS_TEMA1.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="LoginPage">
+      Title="LoginPage" Background="{DynamicResource AppBackgroundBrush}">
 
     <Grid>
         <UniformGrid Rows="4" Columns="1" HorizontalAlignment="Center" VerticalAlignment="Center">

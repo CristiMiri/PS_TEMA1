@@ -4,10 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEMA1_PS.Model.Repositories;
 
-namespace PS_TEMA1.Model.Repository
+namespace PS_TEMA1.Model.Repositories
 {
-    internal class UtilizatorRepository
+    public class UtilizatorRepository
 
     {
         private Repository repository;

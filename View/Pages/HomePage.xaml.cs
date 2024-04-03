@@ -1,7 +1,9 @@
-﻿using PS_TEMA1.Presenter;
+﻿using PS_TEMA1.Model;
+using PS_TEMA1.Presenter;
 using PS_TEMA1.View.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,7 @@ namespace PS_TEMA1.View.Pages
         {
             InitializeComponent();
             presenter = new HomePresenter(this);
+            this.FilterList();
         }
 
 
@@ -44,9 +47,7 @@ namespace PS_TEMA1.View.Pages
         {
             return cmbPrezentare.SelectedItem.ToString();
         }
-
-
-
+    
         public string getTelefon()
         {
             return txtTelefon.Text;
@@ -72,7 +73,6 @@ namespace PS_TEMA1.View.Pages
             cmbPrezentare.ItemsSource = prezentari;
         }
 
-
         public void setTelefon(string telefon)
         {
             txtTelefon.Text = telefon;
@@ -82,24 +82,65 @@ namespace PS_TEMA1.View.Pages
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-        private void accordionButton_Checked(object sender, RoutedEventArgs e)
+      
+        public DataGrid getTabelConferinte()
         {
-            // Show contentBorder when ToggleButton is checked
-            contentBorder.Visibility = Visibility.Visible;
-            accordionButton.Content = "Inscriere▼";
+            return this.TabelConferinte;
+        }
+        private Action<string> _callback;
+        private object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Sectiune sectiune)
+            {
+                switch (sectiune)
+                {
+                    case Sectiune.STIINTE:
+                        return "Stiinte";
+                    case Sectiune.TEHNOLOGIE:
+                        return "Tehnologie";
+                    case Sectiune.MEDICINA:
+                        return "Medicina";
+                    case Sectiune.ARTA:
+                        return "Arta";
+                    case Sectiune.SPORT:
+                        return "Sport";
+                    default:
+                        return string.Empty;
+                }
+            }
+            return string.Empty;
         }
 
-        private void accordionButton_Unchecked(object sender, RoutedEventArgs e)
+
+        public Sectiune getFilterSelected()
         {
-            // Hide contentBorder when ToggleButton is unchecked
-            contentBorder.Visibility = Visibility.Collapsed;
-            accordionButton.Content = "Inscriere▲";
+            return (Sectiune)cmbSectiune.SelectedItem;
         }
 
+        public void setFilterSelected(Sectiune sectiune)
+        {
+            cmbSectiune.SelectedItem = sectiune;
+        }
+
+        public void FilterList()
+        {
+            cmbSectiune.ItemsSource = Enum.GetValues(typeof(Sectiune)).Cast<Sectiune>();            
+        }
+
+        //Event Handlers
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             presenter.inscriereConferinta();
+        }
+
+        private void FilterButton_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.cautareSectiune();
+        }
+
+        internal void SetCallback(Action<string> changePage)
+        {
+            _callback = changePage;
         }
     }
 }
